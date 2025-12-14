@@ -12,9 +12,26 @@ import java.util.List;
  */
 public class DiffContent {
 
+    /**
+     * 类名
+     */
+    private final String className;
 
+    /**
+     * 元类
+     */
+    private final Class<?> diffClass;
+
+    /**
+     * 变更项目
+     */
     private List<DiffItem> diffItems;
 
+
+    public DiffContent(Class<?> diffClass) {
+        this.diffClass = diffClass;
+        this.className = diffClass.getSimpleName();
+    }
 
     public List<DiffItem> getDiffItems() {
         return diffItems;
@@ -27,7 +44,9 @@ public class DiffContent {
     @Override
     public String toString() {
         return "DiffContent{" +
-                "diffItems=" + diffItems +
+                "className='" + className + '\'' +
+                ", diffClass=" + diffClass +
+                ", diffItems=" + diffItems +
                 '}';
     }
 }

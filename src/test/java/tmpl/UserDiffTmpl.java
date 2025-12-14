@@ -1,7 +1,14 @@
 package tmpl;
 
 import domain.User;
-import io.github.yiwyn.deltabean.tmpl.BaseDiffTmpl;
+import io.github.yiwyn.deltabean.annotation.Diff;
+import io.github.yiwyn.deltabean.annotation.IgnoreDiff;
+import io.github.yiwyn.deltabean.entity.DiffItem;
+import io.github.yiwyn.deltabean.interfaceable.BaseDiffTmpl;
+import io.github.yiwyn.deltabean.interfaceable.event.OnFieldDiffEvent;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @className: UserTmpl
@@ -13,4 +20,26 @@ import io.github.yiwyn.deltabean.tmpl.BaseDiffTmpl;
 public class UserDiffTmpl extends BaseDiffTmpl<User> {
 
 
+    private String username;
+
+    @IgnoreDiff
+    private String phone;
+
+    @Diff
+    private Integer gender;
+
+
+    Map<Integer, String> genderMap = new HashMap<>() {{
+        put(0, "男");
+        put(1, "女");
+    }};
+
+
+    @Override
+    public void addFieldDiffEvent(Map<String, OnFieldDiffEvent> fieldOnFieldDiffEventMap) {
+        fieldOnFieldDiffEventMap.put("gender", item -> {
+            item.setNewValueTrans(genderMap.get((Integer) item.getNewValue()));
+            item.setOldValueTrans(genderMap.get((Integer) item.getOldValue()));
+        });
+    }
 }

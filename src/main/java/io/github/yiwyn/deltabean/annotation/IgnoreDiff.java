@@ -6,17 +6,14 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @className: Diff
+ * @className: IgnoreDiff
  * @author: Yiwyn
- * @date: 2025/12/13 23:21
+ * @date: 2025/12/14 01:05
  * @Version: 1.0
- * @description:
+ * @description: 忽略对比
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD, ElementType.TYPE})
-public @interface Diff {
+public @interface IgnoreDiff {
 
-    String diffFieldName() default "";
-
-    String onDiffEventId() default "";
 }

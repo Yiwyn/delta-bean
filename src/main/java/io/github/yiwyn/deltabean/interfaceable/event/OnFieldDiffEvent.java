@@ -1,10 +1,10 @@
-package io.github.yiwyn.deltabean.evnet;
+package io.github.yiwyn.deltabean.interfaceable.event;
 
 import io.github.yiwyn.deltabean.entity.DiffItem;
 
 @FunctionalInterface
 public interface OnFieldDiffEvent {
 
-    DiffItem onDiff(DiffItem item);
+    void onDiff(DiffItem item);
 
 }
