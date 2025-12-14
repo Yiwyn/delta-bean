@@ -46,19 +46,21 @@ public class DiffItem {
     /**
      * 字段名
      */
-    private String fieldName;
+    private String fieldId;
+
+    /**
+     * 字段描述
+     */
+    private String fieldDesc;
+
 
     public DiffItem(Field field, Object oldValue, Object newValue) {
         this.field = field;
-        this.fieldName = field.getName();
+        this.fieldId = field.getName();
         this.oldValue = oldValue;
         this.newValue = newValue;
     }
 
-
-    public void setFieldName(String fieldName) {
-        this.fieldName = fieldName;
-    }
 
     public Field getField() {
         return field;
@@ -72,12 +74,41 @@ public class DiffItem {
         return oldValue;
     }
 
-    public String getFieldName() {
-        return fieldName;
+    public Object getOldValueTrans() {
+        return oldValueTrans;
+    }
+
+    public Object getNewValueTrans() {
+        return newValueTrans;
+    }
+
+    public String getFieldId() {
+        return fieldId;
+    }
+
+    public void setFieldId(String fieldId) {
+        this.fieldId = fieldId;
+    }
+
+    public String getFieldDesc() {
+        return fieldDesc;
+    }
+
+    public void setFieldDesc(String fieldDesc) {
+        this.fieldDesc = fieldDesc;
     }
 
     @Override
     public String toString() {
-        return "DiffItem{" + "field=" + field + ", newValue=" + newValue + ", oldValue=" + oldValue + ", oldValueTrans=" + oldValueTrans + ", newValueTrans=" + newValueTrans + ", fieldName='" + fieldName + '\'' + '}';
+        return "DiffItem{" +
+                "field=" + field +
+                ", newValue=" + newValue +
+                ", oldValue=" + oldValue +
+                ", oldValueTrans=" + oldValueTrans +
+                ", newValueTrans=" + newValueTrans +
+                ", fieldId='" + fieldId + '\'' +
+                ", fieldDesc='" + fieldDesc + '\'' +
+                '}';
     }
 }
+

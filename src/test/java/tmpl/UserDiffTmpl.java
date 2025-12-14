@@ -3,7 +3,6 @@ package tmpl;
 import domain.User;
 import io.github.yiwyn.deltabean.annotation.Diff;
 import io.github.yiwyn.deltabean.annotation.IgnoreDiff;
-import io.github.yiwyn.deltabean.entity.DiffItem;
 import io.github.yiwyn.deltabean.interfaceable.BaseDiffTmpl;
 import io.github.yiwyn.deltabean.interfaceable.event.OnFieldDiffEvent;
 
@@ -20,13 +19,13 @@ import java.util.Map;
 public class UserDiffTmpl extends BaseDiffTmpl<User> {
 
 
-    private String username;
+    String username;
 
     @IgnoreDiff
-    private String phone;
+    String phone;
 
-    @Diff
-    private Integer gender;
+    @Diff(diffFieldDesc = "性别")
+    Integer gender;
 
 
     Map<Integer, String> genderMap = new HashMap<>() {{

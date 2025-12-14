@@ -16,7 +16,19 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD, ElementType.TYPE})
 public @interface Diff {
 
-    String diffFieldName() default "";
+    /**
+     * 变更字段名
+     */
+    String diffFieldId() default "";
 
+
+    /**
+     * 变更字段描述
+     */
+    String diffFieldDesc() default "";
+
+    /**
+     * 变更字段事件 id
+     */
     String onDiffEventId() default "";
 }

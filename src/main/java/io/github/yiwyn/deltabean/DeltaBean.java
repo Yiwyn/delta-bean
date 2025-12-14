@@ -78,19 +78,29 @@ public class DeltaBean {
             for (DiffItem diffItem : diffItems) {
                 Field field = diffItem.getField();
 
+                String fieldId = field.getName();
+
                 if (field.isAnnotationPresent(Diff.class)) {
                     Diff diffAnnotation = field.getAnnotation(Diff.class);
-                    String diffFieldName = diffAnnotation.diffFieldName();
+                    String diffFieldName = diffAnnotation.diffFieldId();
                     if (StrUtil.isNotBlank(diffFieldName)) {
-                        diffItem.setFieldName(diffFieldName);
+                        diffItem.setFieldId(diffFieldName);
                     }
+
+                    String fieldDesc = diffAnnotation.diffFieldDesc();
+                    if (StrUtil.isNotBlank(fieldDesc)) {
+                        diffItem.setFieldDesc(fieldDesc);
+                    } else {
+                        diffItem.setFieldDesc(fieldId);
+                    }
+
                     if (tmplBean == null) {
                         continue;
                     }
                     String eventId = diffAnnotation.onDiffEventId();
                     if (StrUtil.isBlank(eventId)) {
                         // 如果没有设置eventId， 默认使用fieldName 作为事件id
-                        eventId = diffItem.getField().getName();
+                        eventId = fieldId;
                     }
                     // 触发转译
                     tmplBean.triggerTrans(eventId, diffItem);
