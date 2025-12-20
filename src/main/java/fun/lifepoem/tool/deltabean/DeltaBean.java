@@ -39,7 +39,7 @@ public class DeltaBean {
     /**
      * 初始化方法
      */
-    public static void init() {
+    private static void init() {
         DIFF_MODE_STRATEGY_MAP.put(DiffMode.BEAN_TYPE_MODE, new BeanTypeDiffModeStrategy());
         DIFF_MODE_STRATEGY_MAP.put(DiffMode.TEMPLATE_MODE, new TemplateDiffModeStrategy());
     }
