@@ -88,11 +88,10 @@ public class DeltaBean {
                         diffItem.setFieldId(diffFieldName);
                     }
 
+                    // 字段含义
                     String fieldDesc = diffAnnotation.diffFieldDesc();
                     if (StrUtil.isNotBlank(fieldDesc)) {
                         diffItem.setFieldDesc(fieldDesc);
-                    } else {
-                        diffItem.setFieldDesc(fieldId);
                     }
 
                     if (tmplBean == null) {
@@ -106,9 +105,6 @@ public class DeltaBean {
                     // 触发转译
                     tmplBean.triggerTrans(eventId, diffItem);
 
-                } else {
-                    diffItem.setNewValueTrans(diffItem.getNewValue());
-                    diffItem.setOldValueTrans(diffItem.getOldValue());
                 }
             }
 
