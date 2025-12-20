@@ -24,21 +24,19 @@ public class DiffContent {
     /**
      * 变更项目
      */
-    private List<DiffItem> diffItems;
+    private final List<DiffItem> diffItems;
 
 
-    public DiffContent(Class<?> diffClass) {
+    public DiffContent(Class<?> diffClass, List<DiffItem> diffItems) {
         this.diffClass = diffClass;
         this.className = diffClass.getSimpleName();
+        this.diffItems = diffItems;
     }
 
     public List<DiffItem> getDiffItems() {
         return diffItems;
     }
 
-    public void setDiffItems(List<DiffItem> diffItems) {
-        this.diffItems = diffItems;
-    }
 
     @Override
     public String toString() {

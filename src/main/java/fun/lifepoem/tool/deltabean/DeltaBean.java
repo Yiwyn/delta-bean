@@ -113,11 +113,7 @@ public class DeltaBean {
             }
 
             // 输出结果
-            DiffContent content = new DiffContent(oldObj.getClass());
-
-            content.setDiffItems(diffItems);
-
-            return content;
+            return new DiffContent(oldObj.getClass(), diffItems);
         }
 
     }
