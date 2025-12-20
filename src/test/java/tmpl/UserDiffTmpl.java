@@ -1,10 +1,10 @@
 package tmpl;
 
 import domain.User;
-import io.github.yiwyn.deltabean.annotation.Diff;
-import io.github.yiwyn.deltabean.annotation.IgnoreDiff;
-import io.github.yiwyn.deltabean.interfaceable.BaseDiffTmpl;
-import io.github.yiwyn.deltabean.interfaceable.event.OnFieldDiffEvent;
+import fun.lifepoem.tool.deltabean.annotation.Diff;
+import fun.lifepoem.tool.deltabean.annotation.IgnoreDiff;
+import fun.lifepoem.tool.deltabean.interfaceable.BaseDiffTmpl;
+import fun.lifepoem.tool.deltabean.interfaceable.event.OnFieldDiffEvent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,7 +28,7 @@ public class UserDiffTmpl extends BaseDiffTmpl<User> {
     Integer gender;
 
 
-    Map<Integer, String> genderMap = new HashMap<>() {{
+    Map<Integer, String> genderMap = new HashMap<Integer, String>() {{
         put(0, "男");
         put(1, "女");
     }};

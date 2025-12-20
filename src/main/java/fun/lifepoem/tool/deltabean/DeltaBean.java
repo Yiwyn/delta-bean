@@ -1,21 +1,22 @@
-package io.github.yiwyn.deltabean;
+package fun.lifepoem.tool.deltabean;
 
 import cn.hutool.core.util.StrUtil;
-import io.github.yiwyn.deltabean.annotation.Diff;
-import io.github.yiwyn.deltabean.annotation.IgnoreDiff;
-import io.github.yiwyn.deltabean.common.enume.DiffMode;
-import io.github.yiwyn.deltabean.entity.DiffContent;
-import io.github.yiwyn.deltabean.entity.DiffItem;
-import io.github.yiwyn.deltabean.impl.diffmode.BeanTypeDiffModeStrategy;
-import io.github.yiwyn.deltabean.impl.diffmode.TemplateDiffModeStrategy;
-import io.github.yiwyn.deltabean.interfaceable.BaseDiffModeStrategy;
-import io.github.yiwyn.deltabean.interfaceable.BaseDiffTmpl;
+import fun.lifepoem.tool.deltabean.annotation.Diff;
+import fun.lifepoem.tool.deltabean.annotation.IgnoreDiff;
+import fun.lifepoem.tool.deltabean.common.enume.DiffMode;
+import fun.lifepoem.tool.deltabean.entity.DiffContent;
+import fun.lifepoem.tool.deltabean.entity.DiffItem;
+import fun.lifepoem.tool.deltabean.impl.diffmode.BeanTypeDiffModeStrategy;
+import fun.lifepoem.tool.deltabean.impl.diffmode.TemplateDiffModeStrategy;
+import fun.lifepoem.tool.deltabean.interfaceable.BaseDiffModeStrategy;
+import fun.lifepoem.tool.deltabean.interfaceable.BaseDiffTmpl;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @className: DeltaBean
@@ -68,7 +69,7 @@ public class DeltaBean {
             List<Field> fields = diffModeStrategy.diffFields(context);
 
             // 排除掉需要忽略的字段
-            List<Field> templateFields = fields.stream().filter(p -> !p.isAnnotationPresent(IgnoreDiff.class)).toList();
+            List<Field> templateFields = fields.stream().filter(p -> !p.isAnnotationPresent(IgnoreDiff.class)).collect(Collectors.toList());
 
             // 上下文设置需要处理的字段
             context.setTemplateFields(templateFields);

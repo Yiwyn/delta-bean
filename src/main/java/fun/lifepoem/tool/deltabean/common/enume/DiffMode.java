@@ -1,4 +1,4 @@
-package io.github.yiwyn.deltabean.common.enume;
+package fun.lifepoem.tool.deltabean.common.enume;
 
 /**
  * @className: DiffMode

@@ -1,6 +1,5 @@
-package io.github.yiwyn.deltabean.entity;
+package fun.lifepoem.tool.deltabean.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

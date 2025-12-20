@@ -2,4 +2,4 @@
  * delta bean
  * 记录bean的变化
  */
-package io.github.yiwyn.deltabean;
+package fun.lifepoem.tool.deltabean;

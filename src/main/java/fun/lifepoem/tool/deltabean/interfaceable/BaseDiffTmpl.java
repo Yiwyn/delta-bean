@@ -1,10 +1,8 @@
-package io.github.yiwyn.deltabean.interfaceable;
+package fun.lifepoem.tool.deltabean.interfaceable;
 
-import io.github.yiwyn.deltabean.entity.DiffItem;
-import io.github.yiwyn.deltabean.interfaceable.event.OnFieldDiffEvent;
+import fun.lifepoem.tool.deltabean.entity.DiffItem;
+import fun.lifepoem.tool.deltabean.interfaceable.event.OnFieldDiffEvent;
 
-import java.lang.reflect.Field;
-import java.util.AbstractList;
 import java.util.HashMap;
 import java.util.Map;
 

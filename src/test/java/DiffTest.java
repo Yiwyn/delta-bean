@@ -1,8 +1,7 @@
 import domain.User;
-import io.github.yiwyn.deltabean.DeltaBean;
-import io.github.yiwyn.deltabean.annotation.Diff;
-import io.github.yiwyn.deltabean.entity.DiffContent;
-import io.github.yiwyn.deltabean.entity.DiffItem;
+import fun.lifepoem.tool.deltabean.DeltaBean;
+import fun.lifepoem.tool.deltabean.entity.DiffContent;
+import fun.lifepoem.tool.deltabean.entity.DiffItem;
 import tmpl.UserDiffTmpl;
 
 /**

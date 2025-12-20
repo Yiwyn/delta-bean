@@ -1,16 +1,12 @@
-package io.github.yiwyn.deltabean.impl.diffmode;
+package fun.lifepoem.tool.deltabean.impl.diffmode;
 
-import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ReflectUtil;
-import cn.hutool.core.util.StrUtil;
-import io.github.yiwyn.deltabean.DeltaBean;
-import io.github.yiwyn.deltabean.annotation.IgnoreDiff;
-import io.github.yiwyn.deltabean.entity.DiffItem;
-import io.github.yiwyn.deltabean.interfaceable.BaseDiffModeStrategy;
-import io.github.yiwyn.deltabean.utils.CompleteEqualsUtil;
+import fun.lifepoem.tool.deltabean.DeltaBean;
+import fun.lifepoem.tool.deltabean.entity.DiffItem;
+import fun.lifepoem.tool.deltabean.interfaceable.BaseDiffModeStrategy;
+import fun.lifepoem.tool.deltabean.utils.CompleteEqualsUtil;
 
 import java.lang.reflect.Field;
-import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,14 +17,13 @@ import java.util.List;
  * @Version: 1.0
  * @description: 模版对比模式策略
  */
-public class BeanTypeDiffModeStrategy implements BaseDiffModeStrategy {
+public class TemplateDiffModeStrategy implements BaseDiffModeStrategy {
 
 
     @Override
     public List<Field> diffFields(DeltaBean.Context context) {
-        Object oldObject = context.getOldObject();
-        Field[] fields = ReflectUtil.getFields(oldObject.getClass());
-        return List.of(fields);
+        Field[] fields = ReflectUtil.getFields(context.getDiffTmplBean().getClass());
+        return Arrays.asList(fields);
     }
 
     @Override
@@ -41,15 +36,23 @@ public class BeanTypeDiffModeStrategy implements BaseDiffModeStrategy {
         Object oldObj = context.getOldObject();
         Object newObj = context.getNewObject();
 
+
         for (Field tempField : diffFields) {
 
-            tempField.setAccessible(true);
+            String fieldName = tempField.getName();
 
             // 从模版中获取对应对象的值
-            Object oldValue = tempField.get(oldObj);
-            Object newValue = tempField.get(newObj);
+            Field field = ReflectUtil.getField(oldObj.getClass(), fieldName);
+            if (field == null) {
+                continue;
+            }
 
-            // 比较两个值
+            field.setAccessible(true);
+
+            Object oldValue = field.get(oldObj);
+            Object newValue = field.get(newObj);
+
+            // 获取模版参数类型
             boolean fieldEquals = CompleteEqualsUtil.equals(oldValue, newValue);
 
             if (!fieldEquals) {

@@ -1,4 +1,4 @@
-package io.github.yiwyn.deltabean.entity;
+package fun.lifepoem.tool.deltabean.entity;
 
 import java.lang.reflect.Field;
 
