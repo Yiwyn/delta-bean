@@ -28,7 +28,7 @@ public @interface Diff {
     String diffFieldDesc() default "";
 
     /**
-     * 变更字段事件 id
+     * 变更字段事件id,逻辑处理中若为空串则默认使用fieldId作为事件id
      */
     String onDiffEventId() default "";
 }

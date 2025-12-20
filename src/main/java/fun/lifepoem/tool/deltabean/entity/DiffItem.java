@@ -57,8 +57,11 @@ public class DiffItem {
     public DiffItem(Field field, Object oldValue, Object newValue) {
         this.field = field;
         this.fieldId = field.getName();
+        this.fieldDesc = field.getName();
         this.oldValue = oldValue;
+        this.oldValueTrans = oldValue;
         this.newValue = newValue;
+        this.newValueTrans = newValue;
     }
 
 
