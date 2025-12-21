@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  * @author: Yiwyn
  * @date: 2025/12/14 01:05
  * @Version: 1.0
- * @description: 忽略对比
+ * @description: 忽略对比标识的字段
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD, ElementType.TYPE})

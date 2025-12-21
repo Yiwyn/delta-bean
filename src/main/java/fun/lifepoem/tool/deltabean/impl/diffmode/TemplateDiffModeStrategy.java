@@ -35,6 +35,8 @@ public class TemplateDiffModeStrategy implements BaseDiffModeStrategy {
 
         List<Field> diffFields = context.getTemplateFields();
 
+        Class<?> diffClazz = context.getDiffClazz();
+
         List<DiffItem> diffItems = context.getDiffItems();
 
         Object oldObj = context.getOldObject();
@@ -64,14 +66,12 @@ public class TemplateDiffModeStrategy implements BaseDiffModeStrategy {
                 }
             } else {
                 // 从模版中获取对应对象的值
-                Field field = ReflectUtil.getField(oldObj.getClass(), fieldName);
+                Field field = ReflectUtil.getField(diffClazz, fieldName);
                 if (field == null) {
                     continue;
                 }
-
-                field.setAccessible(true);
-                oldValue = field.get(oldObj);
-                newValue = field.get(newObj);
+                oldValue = ReflectUtil.getFieldValue(oldObj, field);
+                newValue = ReflectUtil.getFieldValue(newObj, field);
             }
 
 

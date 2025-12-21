@@ -17,6 +17,7 @@ import java.util.Map.Entry;
 import java.util.UUID;
 
 /**
+ * from 豆包.
  * 终极版通用对象相等判断工具类（修复枚举对比的工具提示问题）
  * 支持：基本类型、包装类、浮点数、字符串、枚举、数组、集合、Map、BigDecimal、日期时间、Optional、UUID、URI/URL、File/Path、CharSequence等
  */

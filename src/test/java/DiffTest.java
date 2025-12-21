@@ -26,7 +26,8 @@ public class DiffTest {
         newObj.setPhone("456");
         newObj.setGender(0);
 
-        DiffContent content = DeltaBean.diffExecutor().diffTemplate(new UserDiffTmpl()).diff(oldObj, newObj);
+        DiffContent content = DeltaBean.diffExecutor(User.class)
+                .diffTemplate(new UserDiffTmpl()).diff(oldObj, newObj);
 
 
         for (DiffItem diffItem : content.getDiffItems()) {

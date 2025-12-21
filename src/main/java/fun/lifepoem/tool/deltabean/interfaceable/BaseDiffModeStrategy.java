@@ -15,8 +15,19 @@ import java.util.List;
  */
 public interface BaseDiffModeStrategy {
 
+    /**
+     * 获取需要对比的字段集合
+     *
+     * @param context 差异对比上文件信息
+     */
     List<Field> diffFields(DeltaBean.Context context);
 
 
+    /**
+     * 变更对比
+     *
+     * @param context 差异对比上文件信息
+     * @return 变更的项目集合
+     */
     List<DiffItem> diff(DeltaBean.Context context) throws Exception;
 }

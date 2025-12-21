@@ -5,7 +5,7 @@ import fun.lifepoem.tool.deltabean.annotation.Diff;
 import fun.lifepoem.tool.deltabean.annotation.VirtualDiff;
 import fun.lifepoem.tool.deltabean.interfaceable.BaseDiffTmpl;
 import fun.lifepoem.tool.deltabean.interfaceable.event.VirtualField;
-import fun.lifepoem.tool.deltabean.interfaceable.event.OnFieldDiffEvent;
+import fun.lifepoem.tool.deltabean.interfaceable.event.OnFieldDiffTransEvent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,7 +28,7 @@ public class UserDiffTmpl extends BaseDiffTmpl<User> {
         put(1, "女");
     }};
 
-    @Diff(diffFieldId = "PhoneDetail")
+    @Diff
     @VirtualDiff
     VirtualField<User> phone = object -> "手机号：" + object.getPhone();
 
@@ -37,10 +37,9 @@ public class UserDiffTmpl extends BaseDiffTmpl<User> {
 
 
     @Override
-    public void addFieldDiffEvent(Map<String, OnFieldDiffEvent> fieldOnFieldDiffEventMap) {
-        fieldOnFieldDiffEventMap.put("gender", item -> {
-            item.setNewValueTrans(genderMap.get((Integer) item.getNewValue()));
-            item.setOldValueTrans(genderMap.get((Integer) item.getOldValue()));
-        });
+    public void addFieldDiffEvent(Map<String, OnFieldDiffTransEvent<User>> fieldOnFieldDiffEventMap) {
+        fieldOnFieldDiffEventMap.put("gender", data -> genderMap.get(data.getGender()));
+
+        fieldOnFieldDiffEventMap.put("phone", data -> data.getPhone() + "变更记录");
     }
 }

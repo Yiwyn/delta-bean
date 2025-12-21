@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  * @author: Yiwyn
  * @date: 2025/12/13 23:21
  * @Version: 1.0
- * @description:
+ * @description: 通过标识对应字段，可以自定义比较时的信息
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD, ElementType.TYPE})
@@ -20,7 +20,6 @@ public @interface Diff {
      * 变更字段名
      */
     String diffFieldId() default "";
-
 
     /**
      * 变更字段描述

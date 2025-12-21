@@ -22,8 +22,8 @@ public class BeanTypeDiffModeStrategy implements BaseDiffModeStrategy {
 
     @Override
     public List<Field> diffFields(DeltaBean.Context context) {
-        Object oldObject = context.getOldObject();
-        Field[] fields = ReflectUtil.getFields(oldObject.getClass());
+        Class<?> diffClazz = context.getDiffClazz();
+        Field[] fields = ReflectUtil.getFields(diffClazz);
         return Arrays.asList(fields);
     }
 
@@ -37,19 +37,20 @@ public class BeanTypeDiffModeStrategy implements BaseDiffModeStrategy {
         Object oldObj = context.getOldObject();
         Object newObj = context.getNewObject();
 
-        for (Field tempField : diffFields) {
+        for (Field typeField : diffFields) {
 
-            tempField.setAccessible(true);
+            typeField.setAccessible(true);
 
             // 从模版中获取对应对象的值
-            Object oldValue = tempField.get(oldObj);
-            Object newValue = tempField.get(newObj);
+            Object oldValue = ReflectUtil.getFieldValue(oldObj, typeField);
+            Object newValue = ReflectUtil.getFieldValue(newObj, typeField);
+
 
             // 比较两个值
             boolean fieldEquals = CompleteEqualsUtil.equals(oldValue, newValue);
 
             if (!fieldEquals) {
-                diffItems.add(new DiffItem(tempField, oldValue, newValue));
+                diffItems.add(new DiffItem(typeField, oldValue, newValue));
             }
         }
 
