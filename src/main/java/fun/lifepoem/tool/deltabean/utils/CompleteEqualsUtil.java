@@ -17,9 +17,8 @@ import java.util.Map.Entry;
 import java.util.UUID;
 
 /**
- * from 豆包.
- * 终极版通用对象相等判断工具类（修复枚举对比的工具提示问题）
- * 支持：基本类型、包装类、浮点数、字符串、枚举、数组、集合、Map、BigDecimal、日期时间、Optional、UUID、URI/URL、File/Path、CharSequence等
+ * 通用对象相等判断工具。支持包装类型、CharSequence、枚举、数组、集合、Map、
+ * BigDecimal、日期时间、Optional、UUID、URI/URL、File/Path 等；自定义对象使用其 equals。
  */
 public class CompleteEqualsUtil {
 
@@ -35,7 +34,7 @@ public class CompleteEqualsUtil {
      *
      * @param a 第一个对象
      * @param b 第二个对象
-     * @return 两个对象是否值相等（全类型适配）
+     * @return 两个对象是否按本工具规则相等；null 仅与 null 相等，运行时类型不同通常不相等
      */
     public static boolean equals(Object a, Object b) {
         // 1. 引用相等 或 均为null → true

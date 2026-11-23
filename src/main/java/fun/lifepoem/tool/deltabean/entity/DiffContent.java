@@ -7,7 +7,7 @@ import java.util.List;
  * @author: Yiwyn
  * @date: 2025/12/13 23:36
  * @Version: 1.0
- * @description: 差异信息
+ * 一次比较的结果，包含比较类名称和差异项目。
  */
 public class DiffContent {
 
@@ -27,12 +27,14 @@ public class DiffContent {
     private final List<DiffItem> diffItems;
 
 
+    /** @param diffClass 比较对象类；@param diffItems 差异项目 */
     public DiffContent(Class<?> diffClass, List<DiffItem> diffItems) {
         this.diffClass = diffClass;
         this.className = diffClass.getSimpleName();
         this.diffItems = diffItems;
     }
 
+    /** @return 差异项目列表 */
     public List<DiffItem> getDiffItems() {
         return diffItems;
     }

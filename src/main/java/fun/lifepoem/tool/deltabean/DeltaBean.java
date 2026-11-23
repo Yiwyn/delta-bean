@@ -23,11 +23,12 @@ import java.util.stream.Collectors;
  * @author: Yiwyn
  * @date: 2025/12/13 23:35
  * @Version: 1.0
- * @description:
+ * Java Bean 差异比较入口，默认按 Bean 字段比较，也可使用模板指定字段。
  */
 public class DeltaBean {
 
 
+    /** 创建 Bean 类型模式的比较执行器。 */
     public static <T> DiffExecutor<T> diffExecutor(Class<T> clazz) {
         init();
         return new DiffExecutor<>(clazz);
@@ -54,6 +55,7 @@ public class DeltaBean {
 
         private final Class<T> diffClazz;
 
+        /** 切换到模板模式；模板字段按名称匹配实体字段。 */
         public DiffExecutor<T> diffTemplate(BaseDiffTmpl<T> tmplBean) {
             this.tmplBean = tmplBean;
             this.diffMode = DiffMode.TEMPLATE_MODE;
@@ -65,7 +67,8 @@ public class DeltaBean {
          *
          * @param oldObj 比较对象-老
          * @param newObj 比较对象-新
-         * @return 差异信息
+         * @return 包含比较类和差异项目的结果
+         * @throws Exception 反射访问或策略执行失败时传播原始异常
          */
         public DiffContent diff(T oldObj, T newObj) throws Exception {
 
@@ -130,7 +133,7 @@ public class DeltaBean {
     }
 
     /**
-     * 上下文对象
+     * 策略执行上下文，保存比较对象、模式、待比较字段及差异列表。
      */
     public static class Context {
         /**
@@ -168,6 +171,7 @@ public class DeltaBean {
          */
         private final Class<?> diffClazz;
 
+        /** @return 当前待比较字段 */
         public List<Field> getTemplateFields() {
             return templateFields;
         }
@@ -176,6 +180,7 @@ public class DeltaBean {
             this.templateFields = templateFields;
         }
 
+        /** @return 当前差异项目 */
         public List<DiffItem> getDiffItems() {
             return diffItems;
         }
@@ -184,22 +189,27 @@ public class DeltaBean {
             this.diffItems = diffItems;
         }
 
+        /** @return 模板实例，Bean 类型模式下为 {@code null} */
         public BaseDiffTmpl<?> getDiffTmplBean() {
             return diffTmplBean;
         }
 
+        /** @return 比较模式 */
         public DiffMode getDiffMode() {
             return diffMode;
         }
 
+        /** @return 旧对象 */
         public Object getOldObject() {
             return oldValue;
         }
 
+        /** @return 新对象 */
         public Object getNewObject() {
             return newValue;
         }
 
+        /** @return 比较类 */
         public Class<?> getDiffClazz() {
             return diffClazz;
         }

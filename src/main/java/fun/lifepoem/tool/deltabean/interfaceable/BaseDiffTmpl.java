@@ -11,7 +11,7 @@ import java.util.Map;
  * @author: Yiwyn
  * @date: 2025/12/13 23:41
  * @Version: 1.0
- * @description: 比较模版
+ * 模板模式的字段和转换事件注册基类。
  * base compare template
  */
 public abstract class BaseDiffTmpl<T> {
@@ -26,7 +26,7 @@ public abstract class BaseDiffTmpl<T> {
     /**
      * 转译触发
      *
-     * @param eventId   事件id
+     * @param eventId   事件 ID；由 {@code @Diff} 指定或回退为字段名
      * @param diffItem  变更项目
      * @param oldObject 比较对象-老
      * @param newObject 比较对象-新
@@ -41,7 +41,7 @@ public abstract class BaseDiffTmpl<T> {
     }
 
     /**
-     * 基类构造方法，构造时可将自定义含义事件加入其中
+     * 构造模板并调用 {@link #addFieldDiffEvent(Map)} 注册事件。
      */
     public BaseDiffTmpl() {
         addFieldDiffEvent(onFieldDiffTransEventMap);

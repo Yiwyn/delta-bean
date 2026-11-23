@@ -19,7 +19,7 @@ import java.util.List;
  * @author: Yiwyn
  * @date: 2025/12/14 01:27
  * @Version: 1.0
- * @description: 模版对比模式策略
+ * 模板模式策略：模板字段按名称匹配实体字段，虚拟字段通过回调计算。
  */
 public class TemplateDiffModeStrategy implements BaseDiffModeStrategy {
 

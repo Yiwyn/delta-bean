@@ -11,14 +11,15 @@ import java.util.List;
  * @author: Yiwyn
  * @date: 2025/12/14 01:20
  * @Version: 1.0
- * @description: 模版模式策略
+ * 比较策略抽象。字段列表由模式决定，{@link #diff(DeltaBean.Context)} 在上下文中写入差异。
  */
 public interface BaseDiffModeStrategy {
 
     /**
      * 获取需要对比的字段集合
      *
-     * @param context 差异对比上文件信息
+     * @param context 包含比较类、模式及对象的上下文
+     * @return 待比较字段
      */
     List<Field> diffFields(DeltaBean.Context context);
 
@@ -26,8 +27,9 @@ public interface BaseDiffModeStrategy {
     /**
      * 变更对比
      *
-     * @param context 差异对比上文件信息
-     * @return 变更的项目集合
+     * @param context 必须已设置待比较字段的上下文
+     * @return 变更项目集合
+     * @throws Exception 反射或策略执行失败
      */
     List<DiffItem> diff(DeltaBean.Context context) throws Exception;
 }
