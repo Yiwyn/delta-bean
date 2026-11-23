@@ -10,24 +10,24 @@ import java.lang.annotation.Target;
  * @author: Yiwyn
  * @date: 2025/12/13 23:21
  * @Version: 1.0
- * @description: 通过标识对应字段，可以自定义比较时的信息
+ * 配置差异字段 ID、描述和转换事件；运行时可见，可用于字段或类型。
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD, ElementType.TYPE})
 public @interface Diff {
 
     /**
-     * 变更字段名
+     * 差异字段 ID；为空时保留字段名。
      */
     String diffFieldId() default "";
 
     /**
-     * 变更字段描述
+     * 差异字段描述；为空时保留字段名。
      */
     String diffFieldDesc() default "";
 
     /**
-     * 变更字段事件id,逻辑处理中若为空串则默认使用fieldId作为事件id
+     * 转换事件 ID；为空时由执行器使用字段名。
      */
     String onDiffEventId() default "";
 }

@@ -7,7 +7,7 @@ import java.lang.reflect.Field;
  * @author: Yiwyn
  * @date: 2025/12/14 00:06
  * @Version: 1.0
- * @description: 差异项目
+ * 单个字段的差异，保存原始值及可选的转换值。
  */
 public class DiffItem {
 
@@ -54,6 +54,7 @@ public class DiffItem {
     private String fieldDesc;
 
 
+    /** 创建差异项目；无转换事件时转换值等于原始值。 */
     public DiffItem(Field field, Object oldValue, Object newValue) {
         this.field = field;
         this.fieldId = field.getName();
@@ -65,14 +66,17 @@ public class DiffItem {
     }
 
 
+    /** @return 反射字段 */
     public Field getField() {
         return field;
     }
 
+    /** @return 新对象原始值 */
     public Object getNewValue() {
         return newValue;
     }
 
+    /** @return 旧对象原始值 */
     public Object getOldValue() {
         return oldValue;
     }

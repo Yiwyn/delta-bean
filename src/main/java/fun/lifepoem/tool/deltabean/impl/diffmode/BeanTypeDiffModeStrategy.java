@@ -15,7 +15,7 @@ import java.util.List;
  * @author: Yiwyn
  * @date: 2025/12/14 01:27
  * @Version: 1.0
- * @description: 模版对比模式策略
+ * Bean 类型模式策略：读取比较类字段并按字段值比较。
  */
 public class BeanTypeDiffModeStrategy implements BaseDiffModeStrategy {
 

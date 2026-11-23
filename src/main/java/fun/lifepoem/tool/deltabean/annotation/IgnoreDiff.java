@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  * @author: Yiwyn
  * @date: 2025/12/14 01:05
  * @Version: 1.0
- * @description: 忽略对比标识的字段
+ * 标记字段从候选列表中排除；实际字段过滤由比较模式执行。
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD, ElementType.TYPE})
